@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+nav.menu {
+	padding: 0 5px 0 5px;
+}
+
+.game {
+	margin-top: 40px;
+}
+
+.btn.touch {
+	font-size: 5em;
+	padding: 0;
+	background-color: transparent;
+	box-shadow: none;
+}
+
+.first-column > .btn {
+	border-top: none;
+}
+
+.last-column > .btn {
+	border-bottom: none;
+}
+
+.first-column > .btn:first-child,
+.second-column > .btn:first-child,
+.last-column > .btn:first-child {
+	border-left: none;
+}
+
+.first-column > .btn:last-child,
+.second-column > .btn:last-child,
+.last-column > .btn:last-child {
+	border-right: none;
+}
