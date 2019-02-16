@@ -178,6 +178,11 @@ const startGame = (() => {
 
 	}
 
+	function render () {
+		const title = document.querySelector('h2.text-center');
+		title.hidden = true;
+	}
+
 	function blockFileds (fields, state) {
 		for (let i = 0, len = fields.length; i < len; i++) {
 			fields[i].disabled = state;
@@ -218,7 +223,7 @@ const startGame = (() => {
 		}
 	}
 
-	return { p1p2, p1com };
+	return { p1p2, p1com, render };
 
 })();
 
@@ -226,6 +231,7 @@ const btnStartP1 = document.querySelector("#btn-p1vsp2");
 const btnStartCOM = document.querySelector("#btn-p1vscom");
 
 btnStartP1.addEventListener("click", () => {
+	startGame.render();
 	startGame.p1p2();
 });
 
