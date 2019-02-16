@@ -44,6 +44,8 @@ const startGame = (() => {
 
 	function verificaResultado (gameData) {
 		const { numOfJogadas, playerOneJogadas, playerTwoJogadas } = gameData;
+		const winner = false;
+
 		if (playerOneJogadas > 2) {
 			const eixoXResult = eixoX("X");
 			const eixoYResult = eixoY("X");
@@ -51,6 +53,7 @@ const startGame = (() => {
 			if (eixoXResult || eixoYResult || diagonalResult) {
 				alert("Jogador 1 Venceu: X");
 				location.reload();
+				winner = true;
 			}
 		} 
 
@@ -61,10 +64,11 @@ const startGame = (() => {
 			if (eixoXResult || eixoYResult || diagonalResult) {
 				alert("Jogador 2 Venceu: O");
 				location.reload();
+				winner = true;
 			}
 		}
 
-		if (numOfJogadas > 8) {
+		if (numOfJogadas > 8 && !winner) {
 			alert("Empate!"); 
 			location.reload();
 		}
@@ -88,15 +92,15 @@ const startGame = (() => {
 				}
 			}
 
-			if (firstColumn === 3) {
+			if (firstColumn > 2) {
 				setWinner("first-column");
-			} else if (secondColumn === 3) {
+			} else if (secondColumn > 2) {
 				setWinner("second-column");
-			} else if (thirdColumn === 3) {
-				setWinner("third-Column");
+			} else if (thirdColumn > 2) {
+				setWinner("third-column");
 			}
 
-			if (firstColumn === 3 || secondColumn === 3 || thirdColumn === 3) {
+			if (firstColumn > 2 || secondColumn > 2 || thirdColumn > 2) {
 				
 				blockFileds(buttons, true);
 				return true;
@@ -121,15 +125,15 @@ const startGame = (() => {
 				}
 			}
 
-			if (firstRow === 3) {
+			if (firstRow > 2) {
 				setWinner("first-row");
-			} else if (secondRow === 3) {
+			} else if (secondRow > 2) {
 				setWinner("second-row");
-			} else if (thirdRow === 3) {
+			} else if (thirdRow > 2) {
 				setWinner("last-row");
 			}
 
-			if (firstRow === 3 || secondRow === 3 || thirdRow === 3) {
+			if (firstRow > 2 || secondRow > 2 || thirdRow > 2) {
 				blockFileds(buttons, true);
 				return true;
 			}
@@ -159,13 +163,13 @@ const startGame = (() => {
 				}
 			}
 			
-			if (countCel1 === 3) {
+			if (countCel1 > 2) {
 				setWinner("diagonal-A")
-			} else if (countCel2 == 3) {
+			} else if (countCel2 > 2) {
 				setWinner("diagonal-B");
 			}
 
-			if (countCel1 === 3 || countCel2 === 3) {
+			if (countCel1 > 2 || countCel2 > 2) {
 				blockFileds(buttons, true);
 				return true;
 			}
@@ -188,7 +192,7 @@ const startGame = (() => {
 
 	function setWinner (area) {
 		const rows = ["first-row", "second-row", "last-row"];
-		const columns = ["first-column", "second-column", "third-Column"];
+		const columns = ["first-column", "second-column", "third-column"];
 		const diagonais = ["diagonal-A", "diagonal-B"];
 
 		if (rows.includes(area)) {
@@ -199,8 +203,12 @@ const startGame = (() => {
 
 		else if (columns.includes(area)) {
 			area = `.${area}`;
-			// const column = document.querySelector(area);
-			// column.classList.add("winner");
+			const column = document.querySelector(area);
+			column.classList.add("winner");
+			column.classList.add("cl");
+			if (area.includes("first") || area.includes("third")) {
+				column.classList.add(area.slice(1, 6));
+			}
 		} 
 
 		else if (diagonais.includes(area)) {
