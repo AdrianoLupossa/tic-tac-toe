@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Neptuno - Tic Tac Toe</title>
+	<meta name="description" content="Play Tic Tac toe online. Built with neptuno css">
+	<link rel="stylesheet" href="./src/css/neptuno.min.css" />
+	<style>
+
+		nav.menu {
+			padding: 0 5px 0 5px;
+		}
+
+		.game {
+			margin-top: 40px;
+			position: relative;
+		}
+
+		.first-row, .second-row, .last-row {
+			position: relative;
+		}
+
+		.btn.touch {
+			font-size: 5em;
+			padding: 0;
+			background-color: transparent;
+			box-shadow: none;
+		}
+
+		.first-row > .btn {
+			border-top: none;
+		}
+
+		.last-row > .btn {
+			border-bottom: none;
+		}
+
+		.first-row > .btn:first-child,
+		.second-row > .btn:first-child,
+		.last-row > .btn:first-child {
+			border-left: none;
+		}
+
+		.first-row > .btn:last-child,
+		.second-row > .btn:last-child,
+		.last-row > .btn:last-child {
+			border-right: none;
+		}
+
+		.first-row.winner::after, 
+		.second-row.winner::after,
+		.last-row.winner::after {
+			content: "";
+			border-top: 6px solid #6495ed;
+			opacity: 0.7;
+			width: 100%;
+			position: absolute;
+			top: 50%;
+			left: 0;
+		}
+
+		.winner.diagonal-A::after {
+			transform: rotate(50deg) skewY(160deg);	
+			top: 149%;
+		}
+
+		.winner.diagonal-B::after {
+			transform: rotate(170deg) skewY(160deg);	
+			top: 149%;
+		}
+
+	</style>
+</head>
+<body>
+	<header>
+		<nav class="menu white shadow space-between middle-align">
+			<h2 class="font-arsenal">Tic Tac Toe (X vs O)</h2>
+			<div class="action-buttons">
+				<button type="button" class="btn secondary has-effect" id="btn-p1vsp2">P1 VS P2</button>
+				<button type="button" class="btn" id="btn-p1vscom">P1 VS COM</button>
+			</div>
+		</nav>
+	</header>
+	<main class="game center-align wrap">
+		<div class="first-row row">
+			<button class="btn touch" disabled="disabled"></button>
+			<button class="btn touch" disabled="disabled"></button>
+			<button class="btn touch" disabled="disabled"></button>
+		</div>
+		<div class="second-row row">
+			<button class="btn touch" disabled="disabled"></button>
+			<button class="btn touch" disabled="disabled"></button>
+			<button class="btn touch" disabled="disabled"></button>
+		</div>
+		<div class="last-row row">
+			<button class="btn touch" disabled="disabled"></button>
+			<button class="btn touch" disabled="disabled"></button>
+			<button class="btn touch" disabled="disabled"></button>
+		</div>
+	</main>
+
+	<script src="src/app.js"></script>
+</body>
+</html>
