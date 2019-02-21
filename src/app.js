@@ -24,7 +24,6 @@ const startGame = (() => {
 			buttons[i].addEventListener("click", function () {
 				numOfJogadas++;
 				this.disabled = true;
-
 				if (!playerClick) {
 					this.textContent = "X"; playerClick = true;
 					playerOneJogadas++;
@@ -32,7 +31,6 @@ const startGame = (() => {
 					this.textContent = "O"; playerClick = false;
 					playerTwoJogadas++;
 				}
-
 				verificaResultado({ numOfJogadas, playerOneJogadas, playerTwoJogadas });
 			});
 		}
@@ -45,11 +43,12 @@ const startGame = (() => {
 	function verificaResultado (gameData) {
 		const { numOfJogadas, playerOneJogadas, playerTwoJogadas } = gameData;
 		const winner = false;
-
+		
 		if (playerOneJogadas > 2) {
 			const eixoXResult = eixoX("X");
 			const eixoYResult = eixoY("X");
 			const diagonalResult = diagonal("X");
+			console.log(eixoYResult);
 			if (eixoXResult || eixoYResult || diagonalResult) {
 				alert("Jogador 1 Venceu: X");
 				location.reload();
@@ -80,16 +79,9 @@ const startGame = (() => {
 			let thirdColumn = 0;
 
 			for (let i = 0, len = 3; i < len; i++) {
-				if (btnFirstColumn[i].textContent === player) {
-					firstColumn++;
-
-				} else if (btnSecondColumn[i].textContent === player) {
-					secondColumn++;
-
-				} else if (btnLastColumn[i].textContent === player) {
-					thirdColumn++;
-
-				}
+				if (btnFirstColumn[i].textContent === player) firstColumn++;
+				if (btnSecondColumn[i].textContent === player) secondColumn++;
+				if (btnLastColumn[i].textContent === player) thirdColumn++;
 			}
 
 			if (firstColumn > 2) {
@@ -99,7 +91,6 @@ const startGame = (() => {
 			} else if (thirdColumn > 2) {
 				setWinner("third-column");
 			}
-
 			if (firstColumn > 2 || secondColumn > 2 || thirdColumn > 2) {
 				
 				blockFileds(buttons, true);
@@ -113,16 +104,9 @@ const startGame = (() => {
 			let thirdRow = 0;
 
 			for (let i = 0, len = 3; i < len; i++) {
-				if (btnfirstRow[i].textContent === player) {
-					firstRow++;
-
-				} else if (btnsecondRow[i].textContent === player) {
-					secondRow++;
-
-				} else if (btnlastRow[i].textContent === player) {
-					thirdRow++;
-
-				}
+				if (btnfirstRow[i].textContent === player) firstRow++;
+				if (btnsecondRow[i].textContent === player) secondRow++;
+				if (btnlastRow[i].textContent === player) thirdRow++;
 			}
 
 			if (firstRow > 2) {
