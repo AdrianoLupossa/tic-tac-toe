@@ -37,18 +37,53 @@ const startGame = (() => {
 	}
 
 	const p1com = () => {
-		console.log("pc");
+		clearFields(buttons);
+		blockFileds(buttons, false);
+		let playerClick = false;
+		let numOfJogadas = 0;
+		let playerOneJogadas = 0;
+		let playerTwoJogadas = 0;
+		for (let i = 0, len = buttons.length; i < len; i++) {
+			buttons[i].addEventListener("click", function () {
+				numOfJogadas++;
+				if (!playerClick) {
+					this.textContent = "X"; playerClick = true;
+					playerOneJogadas++;
+					this.disabled = true;
+					const pc = setTimeout(() => {
+						PCPlay();
+						playerClick = false;
+						playerTwoJogadas += 1;
+						numOfJogadas++;
+						verificaResultado({ numOfJogadas, playerOneJogadas, playerTwoJogadas });
+					}, 1000);
+					verificaResultado({ numOfJogadas, playerOneJogadas, playerTwoJogadas });
+				}
+			});
+		}
+
+		let btnIndex;
+		function PCPlay () {
+			btnIndex = Math.floor(Math.random() * buttons.length);
+			if (buttons[btnIndex].textContent === "") {
+				buttons[btnIndex].textContent = "O";
+				buttons[btnIndex].disabled = true;
+			} else {
+				PCPlay();
+			}
+
+		}
+
 	}
 
 	function verificaResultado (gameData) {
 		const { numOfJogadas, playerOneJogadas, playerTwoJogadas } = gameData;
-		const winner = false;
+		let winner = false;
 		
 		if (playerOneJogadas > 2) {
 			const eixoXResult = eixoX("X");
 			const eixoYResult = eixoY("X");
 			const diagonalResult = diagonal("X");
-			console.log(eixoYResult);
 			if (eixoXResult || eixoYResult || diagonalResult) {
 				alert("Jogador 1 Venceu: X");
 				location.reload();
@@ -220,5 +255,6 @@ btnStartP1.addEventListener("click", () => {
 });
 
 btnStartCOM.addEventListener("click", () => {
+	startGame.render();
 	startGame.p1com();
 });
