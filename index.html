@@ -2,14 +2,11 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>Neptuno - Tic Tac Toe</title>
 	<meta name="description" content="Play Tic Tac toe online. Built with neptuno css">
 	<link rel="stylesheet" href="./src/css/neptuno.min.css" />
 	<style>
-
-		body {
-			overflow: hidden;
-		}
 
 		h2.text-center {
 			padding: 10px;
@@ -35,6 +32,19 @@
 			padding: 0;
 			background-color: transparent;
 			box-shadow: none;
+		}
+
+		@media (max-width: 780px) {
+			.btn.touch, 
+			.first-row, 
+			.second-row, 
+			.last-row {
+				width: 100%;
+			}
+			nav.menu {
+				justify-content: center;
+				flex-wrap: wrap;
+			}
 		}
 
 		.first-row > .btn {
